@@ -1,0 +1,366 @@
+/* =========================================
+   FIXIN - Animasi
+   Ditambahkan di atas style.css tanpa mengubah warna, layout,
+   atau struktur yang sudah ada. Semua gerakan pakai transform
+   dan opacity saja supaya ringan (tidak memicu reflow).
+
+   Cara kerja singkat
+   1. Script kecil di <head> menambah class "js-anim" ke <html>.
+      Posisi awal (tersembunyi) HANYA berlaku kalau class itu ada,
+      jadi kalau JavaScript mati, semua konten tetap tampil normal.
+   2. Hero dan page header dianimasikan murni lewat CSS keyframes.
+   3. Section lain dianimasikan lewat js/animations.js yang memberi
+      atribut data-anim, lalu class is-in saat masuk viewport.
+========================================= */
+
+:root {
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --anim-dist: 28px;
+  --anim-dur: 0.65s;
+}
+
+/* Di layar kecil gerakan dibuat lebih pendek dan sedikit lebih cepat */
+@media (max-width: 680px) {
+  :root {
+    --anim-dist: 18px;
+    --anim-dur: 0.5s;
+  }
+}
+
+/* Jaga-jaga supaya gerakan horizontal tidak memunculkan scroll samping.
+   "clip" tidak membuat scroll container baru, jadi navbar sticky aman. */
+body {
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+/* ---------- Keyframes ---------- */
+@keyframes fx-up {
+  from { opacity: 0; transform: translate3d(0, var(--anim-dist), 0); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes fx-up-sm {
+  from { opacity: 0; transform: translate3d(0, 14px, 0); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes fx-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fx-msg {
+  from { opacity: 0; transform: translate3d(0, -6px, 0); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes fx-in-left {
+  from { opacity: 0; transform: translate3d(-10px, 0, 0); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes fx-dot {
+  0%   { transform: scale(0.6); }
+  60%  { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* Panel quick booking di hero punya transform bawaan (translateY) di
+   style.css supaya menimpa section berikutnya. Nilainya disamakan lewat
+   --qb-y agar animasi berakhir tepat di posisi aslinya. */
+.hero .quick-booking { --qb-y: 40px; }
+
+@keyframes fx-pop {
+  from {
+    opacity: 0;
+    transform: translate3d(0, calc(var(--qb-y) + 24px), 0) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, var(--qb-y), 0);
+  }
+}
+
+@keyframes fx-nav {
+  from { opacity: 0; transform: translate3d(0, -8px, 0); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ---------- Hero (masuk saat halaman dibuka, stagger) ---------- */
+.js-anim .hero-text .eyebrow {
+  animation: fx-up var(--anim-dur) var(--ease-out) 0.05s backwards;
+}
+
+.js-anim .hero-text h1 {
+  animation: fx-up 0.7s var(--ease-out) 0.15s backwards;
+}
+
+.js-anim .hero-text p {
+  animation: fx-up 0.7s var(--ease-out) 0.3s backwards;
+}
+
+.js-anim .hero-actions .btn:nth-child(1) {
+  animation: fx-up var(--anim-dur) var(--ease-out) 0.45s backwards;
+}
+
+.js-anim .hero-actions .btn:nth-child(2) {
+  animation: fx-up var(--anim-dur) var(--ease-out) 0.55s backwards;
+}
+
+.js-anim .hero .quick-booking {
+  animation: fx-pop 0.7s var(--ease-out) 0.7s backwards;
+}
+
+@media (max-width: 960px) {
+  .hero .quick-booking { --qb-y: 24px; }
+}
+
+@media (max-width: 680px) {
+  .hero .quick-booking { --qb-y: 16px; }
+}
+
+/* ---------- Page header (about, layanan, booking, lacak servis) ---------- */
+.js-anim .page-header-back {
+  animation: fx-fade 0.5s var(--ease-out) backwards;
+}
+
+.js-anim .page-header h1 {
+  animation: fx-up var(--anim-dur) var(--ease-out) 0.08s backwards;
+}
+
+.js-anim .page-header p {
+  animation: fx-up var(--anim-dur) var(--ease-out) 0.2s backwards;
+}
+
+/* ---------- Scroll reveal ---------- */
+.js-anim [data-anim] {
+  opacity: 0;
+  transition:
+    opacity var(--anim-dur) var(--ease-out) var(--anim-delay, 0ms),
+    transform var(--anim-dur) var(--ease-out) var(--anim-delay, 0ms);
+}
+
+.js-anim [data-anim="up"]    { transform: translate3d(0, var(--anim-dist), 0); }
+.js-anim [data-anim="left"]  { transform: translate3d(calc(var(--anim-dist) * -1), 0, 0); }
+.js-anim [data-anim="right"] { transform: translate3d(var(--anim-dist), 0, 0); }
+.js-anim [data-anim="scale"] { transform: scale(0.96); }
+.js-anim [data-anim="card"]  {
+  transform: translate3d(0, calc(var(--anim-dist) * 0.8), 0) scale(0.97);
+}
+
+.js-anim [data-anim].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Navbar saat discroll ---------- */
+.navbar {
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.navbar.is-scrolled {
+  background: rgba(255, 255, 255, 0.88);
+  border-bottom-color: rgba(226, 230, 234, 0.6);
+  box-shadow: 0 4px 18px rgba(12, 35, 64, 0.08);
+  -webkit-backdrop-filter: saturate(160%) blur(10px);
+  backdrop-filter: saturate(160%) blur(10px);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .navbar.is-scrolled {
+    background: rgba(255, 255, 255, 0.97);
+  }
+}
+
+.nav-links a {
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+/* Menu mobile turun pelan, bukan muncul tiba-tiba */
+@media (max-width: 680px) {
+  .nav-links.open {
+    animation: fx-nav 0.3s var(--ease-out);
+  }
+}
+
+/* ---------- Tombol dan CTA ---------- */
+.btn {
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s var(--ease-out);
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.arrow-btn {
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s var(--ease-out);
+}
+
+.arrow-btn svg {
+  transition: transform 0.25s var(--ease-out);
+}
+
+.back-btn svg {
+  transition: transform 0.25s var(--ease-out);
+}
+
+/* Efek hover hanya untuk perangkat yang benar-benar punya hover,
+   supaya di HP tidak "nyangkut" setelah disentuh. */
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover:not(:disabled) {
+    transform: scale(1.03);
+  }
+
+  .btn-block:hover:not(:disabled) {
+    transform: scale(1.02);
+  }
+
+  .btn-teal:hover:not(:disabled) {
+    box-shadow: 0 8px 18px rgba(23, 179, 163, 0.28);
+  }
+
+  .btn-navy:hover:not(:disabled) {
+    box-shadow: 0 8px 18px rgba(12, 35, 64, 0.25);
+  }
+
+  .arrow-btn:hover {
+    transform: scale(1.05);
+  }
+
+  .back-btn:hover svg {
+    transform: translateX(-3px);
+  }
+}
+
+/* ---------- Card layanan dan keunggulan ---------- */
+.feature-card,
+.service-card {
+  transition:
+    transform 0.35s var(--ease-out),
+    box-shadow 0.35s var(--ease-out),
+    border-color 0.35s var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 34px rgba(12, 35, 64, 0.22);
+  }
+
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 32px rgba(12, 35, 64, 0.12);
+    border-color: #cfe9e5;
+  }
+
+  .service-card:hover .arrow-btn svg {
+    transform: translateX(2px);
+  }
+}
+
+/* ---------- Form (booking, tracking, login) ---------- */
+.field label {
+  transition: color 0.25s ease;
+}
+
+.field:focus-within label {
+  color: var(--teal-dark);
+}
+
+.field input,
+.field select,
+.field textarea {
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  box-shadow: 0 0 0 3px rgba(23, 179, 163, 0.14);
+}
+
+/* Pesan error, hasil tracking, dan field alamat muncul halus.
+   Elemen ini berpindah dari display:none ke tampil, jadi animasi
+   otomatis jalan setiap kali mereka muncul. */
+.auth-error,
+#trackingNotFound {
+  animation: fx-msg 0.35s var(--ease-out) backwards;
+}
+
+.tracking-result.show {
+  animation: fx-up-sm 0.5s var(--ease-out) backwards;
+}
+
+#pickupAddressField {
+  animation: fx-up-sm 0.4s var(--ease-out) backwards;
+}
+
+/* Timeline status tracking */
+.timeline-step .dot {
+  transition:
+    background-color 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.timeline-step.done .dot {
+  animation: fx-dot 0.5s var(--ease-out) backwards;
+}
+
+.timeline-step:nth-child(2).done .dot { animation-delay: 0.12s; }
+.timeline-step:nth-child(3).done .dot { animation-delay: 0.24s; }
+
+.tracking-history-item {
+  animation: fx-in-left 0.4s var(--ease-out) backwards;
+}
+
+.tracking-history-item:nth-child(2) { animation-delay: 0.08s; }
+.tracking-history-item:nth-child(3) { animation-delay: 0.16s; }
+.tracking-history-item:nth-child(4) { animation-delay: 0.24s; }
+.tracking-history-item:nth-child(n + 5) { animation-delay: 0.3s; }
+
+/* Angka counter: lebar digit sama supaya tidak bergeser saat berhitung */
+.badge-years strong {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Aksesibilitas: prefers-reduced-motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  .js-anim [data-anim] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .btn:hover,
+  .btn:active,
+  .arrow-btn:hover,
+  .feature-card:hover,
+  .service-card:hover {
+    transform: none !important;
+  }
+}

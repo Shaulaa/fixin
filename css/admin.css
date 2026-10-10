@@ -1,0 +1,369 @@
+/* =========================================
+   FIXIN - Tampilan Admin
+   Dimuat SETELAH style.css & dashboard.css.
+   Semua selector di-scope ke .admin-topbar / .admin-content
+   supaya halaman user & landing tidak ikut berubah.
+========================================= */
+
+:root {
+  --admin-bg: #f1f4f8;
+  --admin-line: #e3e8ef;
+  --admin-ink: #14233a;
+  --admin-blue: #3a7bd5;
+  --admin-amber: #d99a2b;
+  --admin-red: #c8503f;
+  --admin-shadow: 0 1px 2px rgba(12, 35, 64, 0.04), 0 4px 14px rgba(12, 35, 64, 0.05);
+}
+
+body:has(.admin-topbar) {
+  background: var(--admin-bg);
+}
+
+/* ---------- Topbar ---------- */
+.admin-topbar {
+  background: var(--navy);
+  border-bottom: none;
+  box-shadow: 0 2px 0 var(--teal);
+}
+
+.admin-topbar .container {
+  height: 68px;
+}
+
+.admin-topbar .logo > span:last-child {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--white);
+  padding: 3px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+}
+
+@media (min-width: 681px) {
+  .admin-topbar .nav-links {
+    gap: 6px;
+  }
+
+  .admin-topbar .nav-links a {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    color: var(--text-on-navy);
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .admin-topbar .nav-links a:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--white);
+  }
+
+  .admin-topbar .nav-links a.active {
+    background: var(--teal);
+    color: var(--white);
+  }
+}
+
+.admin-topbar a:focus-visible,
+.admin-topbar button:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+
+/* ---------- Konten & judul halaman ---------- */
+.admin-content {
+  padding: 40px 0 88px;
+}
+
+.admin-content .eyebrow {
+  display: none;
+}
+
+/* Halaman detail booking: label konteks tetap dipakai */
+.admin-content .back-btn + .admin-page-head .eyebrow {
+  display: inline-block;
+}
+
+.admin-page-head {
+  margin-bottom: 26px;
+}
+
+.admin-page-head h1 {
+  font-size: 1.75rem;
+  letter-spacing: -0.01em;
+  color: var(--admin-ink);
+}
+
+.admin-page-head p {
+  max-width: 62ch;
+}
+
+.section-title-row h2 {
+  font-size: 1.15rem;
+  color: var(--admin-ink);
+}
+
+.admin-content .section-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+/* ---------- Kartu statistik ---------- */
+.admin-content .stat-cards {
+  gap: 20px;
+}
+
+.admin-content .stat-card {
+  --stat-accent: var(--navy-light);
+  --stat-tint: rgba(18, 58, 99, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 124px;
+  padding: 22px 24px;
+  background: var(--white);
+  border: 1px solid var(--admin-line);
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(12, 35, 64, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.admin-content .stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(12, 35, 64, 0.08);
+}
+
+.admin-content .stat-card.stat-active   { --stat-accent: var(--admin-blue);  --stat-tint: rgba(58, 123, 213, 0.10); }
+.admin-content .stat-card.stat-progress { --stat-accent: var(--navy-light);  --stat-tint: rgba(18, 58, 99, 0.08); }
+.admin-content .stat-card.stat-warning  { --stat-accent: var(--admin-amber); --stat-tint: rgba(217, 154, 43, 0.12); }
+.admin-content .stat-card.stat-done     { --stat-accent: var(--teal-dark);   --stat-tint: rgba(23, 179, 163, 0.12); }
+
+.admin-content .stat-card .stat-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.admin-content .stat-card .stat-label {
+  margin: 0;
+  padding-top: 2px;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--text-muted);
+}
+
+.admin-content .stat-card .stat-icon {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  color: var(--stat-accent);
+  background: var(--stat-tint);
+}
+
+.admin-content .stat-card .stat-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.admin-content .stat-card .stat-value,
+.admin-content .stat-card.stat-active .stat-value,
+.admin-content .stat-card.stat-progress .stat-value,
+.admin-content .stat-card.stat-warning .stat-value,
+.admin-content .stat-card.stat-done .stat-value {
+  font-size: 2.1rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Tabel ---------- */
+.admin-content .admin-table-wrap {
+  border: 1px solid var(--admin-line);
+  border-radius: 12px;
+  box-shadow: var(--admin-shadow);
+}
+
+.admin-content .admin-table th,
+.admin-content .admin-table td {
+  padding: 14px 20px;
+  border-bottom: 1px solid #edf0f5;
+}
+
+.admin-content .admin-table th {
+  background: #f7f9fc;
+  color: #4a586b;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border-bottom: 1px solid var(--admin-line);
+}
+
+.admin-content .admin-table td {
+  color: var(--admin-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.admin-content .admin-table td:first-child {
+  font-weight: 600;
+  color: var(--teal-dark);
+}
+
+.admin-content .admin-table tbody tr {
+  transition: background 0.12s ease;
+}
+
+.admin-content .admin-table tbody tr:hover {
+  background: #f6fafb;
+}
+
+/* Kolom biaya di laporan rata kanan supaya angka sejajar */
+#adminReportsPage .admin-table th:last-child,
+#adminReportsPage .admin-table td:last-child {
+  text-align: right;
+}
+
+.admin-content .admin-table-empty {
+  padding: 56px 20px;
+  font-size: 0.93rem;
+}
+
+/* ---------- Badge status ---------- */
+.admin-content .status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 12px 4px 10px;
+}
+
+.admin-content .status-badge::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* ---------- Filter ---------- */
+.admin-content .admin-filters {
+  padding: 14px;
+  background: var(--white);
+  border: 1px solid var(--admin-line);
+  border-radius: 12px;
+  box-shadow: var(--admin-shadow);
+  margin-bottom: 20px;
+}
+
+.admin-content .admin-filters input[type="search"],
+.admin-content .admin-filters select {
+  background: #f7f9fc;
+  border-color: var(--admin-line);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.admin-content .admin-filters input[type="search"]:focus,
+.admin-content .admin-filters select:focus {
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(23, 179, 163, 0.18);
+}
+
+/* ---------- Tombol ---------- */
+.admin-content .btn {
+  padding: 11px 22px;
+  border-radius: 8px;
+}
+
+.admin-content .btn-outline-dark {
+  background: var(--white);
+}
+
+.admin-content .btn:focus-visible,
+.admin-content .btn-link:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+
+.btn-export svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+.btn-export[disabled] {
+  opacity: 0.65;
+  cursor: progress;
+}
+
+.report-applied-period {
+  margin-top: 16px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* ---------- Kartu detail booking ---------- */
+.admin-content .order-card {
+  border: 1px solid var(--admin-line);
+  border-radius: 12px;
+  box-shadow: var(--admin-shadow);
+}
+
+.admin-content .order-card h3 {
+  font-size: 1.02rem;
+  color: var(--admin-ink);
+}
+
+/* ---------- Modal ---------- */
+.admin-content ~ .modal-backdrop .modal-card,
+#adminProductsPage .modal-card {
+  border-radius: 14px;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 680px) {
+  .admin-content {
+    padding: 28px 0 64px;
+  }
+
+  .admin-page-head h1 {
+    font-size: 1.45rem;
+  }
+
+  .admin-content .admin-table th,
+  .admin-content .admin-table td {
+    padding: 12px 14px;
+  }
+
+  .admin-content .stat-card {
+    min-height: 0;
+    gap: 14px;
+    padding: 18px 20px;
+  }
+
+  .admin-content .stat-card .stat-value {
+    font-size: 1.75rem;
+  }
+
+  .admin-topbar .nav-links a.active {
+    color: var(--teal);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-content *,
+  .admin-topbar * {
+    transition: none !important;
+  }
+}

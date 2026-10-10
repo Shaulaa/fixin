@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Produk & Layanan - Admin FIXIN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+
+  <div id="adminProductsPage">
+
+    <header class="navbar admin-topbar">
+      <div class="container">
+        <a href="admin-dashboard.html" class="logo">FIX<span>IN</span> <span style="font-size:0.7rem; font-weight:500; opacity:0.7;">Admin</span></a>
+        <nav class="nav-links">
+          <a href="admin-dashboard.html">Dashboard</a>
+          <a href="admin-booking.html">Booking</a>
+          <a href="admin-products.html" class="active">Produk/Layanan</a>
+          <a href="admin-reports.html">Laporan</a>
+        </nav>
+        <a href="#" id="logoutBtn" class="btn btn-outline">Keluar</a>
+        <button class="nav-toggle" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <section class="admin-content">
+      <div class="container">
+        <div class="admin-page-head">
+          <div>
+            <span class="eyebrow">Manajemen</span>
+            <h1>Daftar Layanan Servis</h1>
+            <p>Atur katalog layanan servis, harga, dan ketersediaan.</p>
+          </div>
+          <button type="button" class="btn btn-teal" id="btnTambahProduk">+ Tambah Layanan</button>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nama Layanan</th>
+                <th>Kategori</th>
+                <th>Estimasi Waktu</th>
+                <th>Harga Dasar</th>
+                <th>Status</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="productsTableBody">
+              <!-- Data dimuat dari admin.js -->
+            </tbody>
+          </table>
+          <p class="admin-table-empty" id="productsEmptyState" style="display:none;">Tidak ada produk/layanan.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal Form Produk -->
+    <div class="modal-backdrop" id="modalProduct">
+      <div class="modal-card">
+        <div class="modal-head">
+          <h3 id="modalProductTitle">Tambah Layanan</h3>
+          <button type="button" class="modal-close" id="btnCloseProduct">&times;</button>
+        </div>
+        <form id="formProduct">
+          <input type="hidden" id="prodId" />
+          <div class="field" style="margin-bottom:14px;">
+            <label for="prodName">Nama Layanan</label>
+            <input type="text" id="prodName" class="order-detail-select" required placeholder="Contoh: Ganti LCD Laptop" />
+          </div>
+          <div class="field" style="margin-bottom:14px;">
+            <label for="prodCat">Kategori</label>
+            <select id="prodCat" class="order-detail-select" required>
+              <option value="Laptop">Laptop</option>
+              <option value="HP">HP</option>
+              <option value="Tablet">Tablet</option>
+            </select>
+          </div>
+          <div class="field" style="margin-bottom:14px;">
+            <label for="prodTime">Estimasi Waktu</label>
+            <input type="text" id="prodTime" class="order-detail-select" required placeholder="Contoh: 1-2 hari" />
+          </div>
+          <div class="field" style="margin-bottom:14px;">
+            <label for="prodPrice">Harga Dasar (Rp)</label>
+            <input type="number" id="prodPrice" class="order-detail-select" required placeholder="Contoh: 150000" />
+          </div>
+          <div class="field" style="margin-bottom:14px;">
+            <label for="prodDesc">Deskripsi Singkat</label>
+            <textarea id="prodDesc" class="order-detail-select" rows="3" required placeholder="Jelaskan layanan ini secara singkat..."></textarea>
+          </div>
+          <label class="checkbox-field" style="margin-bottom:14px;">
+            <input type="checkbox" id="prodActive" checked /> Tampilkan di katalog (Aktif)
+          </label>
+          <div class="modal-actions">
+            <button type="button" class="btn btn-outline-dark" id="btnCancelProduct">Batal</button>
+            <button type="submit" class="btn btn-teal">Simpan Layanan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Riwayat Pesanan - FIXIN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">FIX<span>IN</span></a>
+      <nav class="nav-links">
+        <a href="index.html">Beranda</a>
+        <a href="services.html">Layanan</a>
+        <a href="booking.html">Booking</a>
+        <a href="tracking.html">Lacak Servis</a>
+      </nav>
+      <a href="#" id="logoutBtn" class="btn btn-outline-dark">Keluar</a>
+      <button class="nav-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="page-header">
+    <div class="container">
+      <div class="page-header-back">
+        <a href="index.html" class="back-btn" onclick="return goBack('index.html')">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Kembali
+          </a>
+      </div>
+      <h1>Riwayat Pesanan</h1>
+      <p>Pantau progres tiap servis dan lihat detail pesanan kamu di sini.</p>
+    </div>
+  </section>
+
+  <section class="user-dashboard-content">
+    <div class="container">
+
+      <!-- Riwayat order -->
+      <div class="section-title-row">
+        <h2>Semua Pesanan</h2>
+        <a href="booking.html" class="btn btn-teal">+ Booking Baru</a>
+      </div>
+
+      <div class="order-list hidden" id="orderList"></div>
+
+      <div class="order-empty-state" id="orderEmptyState">
+        <p>Kamu belum punya riwayat order.</p>
+        <a href="booking.html" class="btn btn-teal">Booking Sekarang</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Modal Detail Order -->
+  <div class="modal-backdrop" id="detailModalBackdrop">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>Detail Order</h3>
+        <button type="button" class="modal-close" id="closeDetailModal" aria-label="Tutup">&times;</button>
+      </div>
+
+      <div class="order-summary">
+        <h4>Kode Servis: <span id="detailKode">-</span></h4>
+        <div class="summary-row"><span>Layanan</span><span id="detailLayanan">-</span></div>
+        <div class="summary-row"><span>Perangkat</span><span id="detailPerangkat">-</span></div>
+        <div class="summary-row"><span>Keluhan</span><span id="detailKeluhan">-</span></div>
+        <div class="summary-row"><span>Tanggal Servis</span><span id="detailTanggal">-</span></div>
+        <div class="summary-row"><span>Metode</span><span id="detailMetode">-</span></div>
+        <div class="summary-row hidden" id="detailAlamatRow"><span>Alamat Jemput</span><span id="detailAlamat">-</span></div>
+        <div class="summary-row"><span>Biaya Layanan</span><span id="detailSubtotal">Rp 0</span></div>
+        <div class="summary-row"><span>Biaya Jemput</span><span id="detailOngkir">Rp 0</span></div>
+        <div class="summary-row total"><span>Total</span><span id="detailTotal">Rp 0</span></div>
+      </div>
+
+      <p class="status-note">Status servis: <strong id="detailStatusServis">-</strong></p>
+      <p class="status-note">Status pembayaran: <strong id="detailStatusBayar">-</strong></p>
+
+      <div class="modal-actions">
+        <button type="button" class="btn btn-outline-dark" id="closeDetailModalBottom" onclick="document.getElementById('detailModalBackdrop').classList.remove('show')">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Area cetak struk: hanya tampil saat window.print() dipanggil (lihat css/dashboard.css @media print) -->
+  <div id="strukPrintArea" class="hidden">
+    <h3>FIXIN &middot; Struk Servis</h3>
+    <p>Kode Servis: <strong id="strukKode">-</strong></p>
+    <p>Atas Nama: <span id="strukNama">-</span></p>
+    <p>Layanan: <span id="strukLayanan">-</span></p>
+    <p>Tanggal: <span id="strukTanggal">-</span></p>
+    <p>Metode: <span id="strukMetode">-</span></p>
+    <hr />
+    <p>Biaya Layanan: <span id="strukSubtotal">Rp 0</span></p>
+    <p>Biaya Jemput: <span id="strukOngkir">Rp 0</span></p>
+    <p><strong>Total: <span id="strukTotal">Rp 0</span></strong></p>
+    <p>Status Pembayaran: <span id="strukStatusBayar">-</span></p>
+    <p>Terima kasih telah menggunakan FIXIN.</p>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

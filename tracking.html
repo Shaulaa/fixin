@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lacak Servis - FIXIN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <script>document.documentElement.classList.add("js-anim");</script>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">FIX<span>IN</span></a>
+      <nav class="nav-links">
+        <a href="index.html">Beranda</a>
+        <a href="index.html#layanan">Layanan</a>
+        <a href="booking.html">Booking</a>
+        <a href="tracking.html" class="active">Lacak Servis</a>
+        <a href="index.html#tentang">Tentang</a>
+      </nav>
+      <span class="nav-auth" id="navAuthArea"></span>
+      <button class="nav-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="page-header">
+    <div class="container">
+      <div class="page-header-back">
+        <a href="index.html" class="back-btn" onclick="return goBack('index.html')">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Kembali
+          </a>
+      </div>
+      <h1>Lacak Status Servis</h1>
+      <p>Masukkan kode servis yang kamu dapat setelah booking.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="form-card">
+        <form id="trackingForm">
+          <div class="field" style="margin-bottom: 18px;">
+            <label for="trackingInput">Kode Servis</label>
+            <input type="text" id="trackingInput" name="kode" placeholder="Contoh: FX-1234" required />
+          </div>
+          <button type="submit" class="btn btn-teal btn-block">Cek Status</button>
+        </form>
+
+        <div id="trackingNotFound" class="tracking-error-card" style="display:none;">
+          <div class="tracking-error-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <h4>Kode Servis Tidak Ditemukan</h4>
+          <p>Pastikan kode servis yang kamu masukkan sudah benar. Kode servis diberikan saat proses booking selesai.</p>
+          <a href="booking.html" class="btn btn-teal" style="margin-top:12px;">Booking Servis Baru</a>
+        </div>
+      </div>
+
+      <div id="trackingLoading" class="tracking-loading" style="display:none;">
+        <div class="tracking-loading-bar"></div>
+        <div class="tracking-loading-bar short"></div>
+      </div>
+
+      <div class="tracking-result" id="trackingResult">
+        <div class="tracking-card">
+          <h3>Kode Servis: <span class="code" id="resKode"></span></h3>
+          <p style="margin-top:6px;">Atas nama: <strong id="resNama"></strong></p>
+          <p>Layanan: <span id="resLayanan"></span> &middot; Tanggal: <span id="resTanggal"></span></p>
+          <p class="hidden"><strong>Metode:</strong> <span id="resMetode"></span></p>
+          <div class="status-note hidden" style="margin-top:16px;">
+            <div style="font-size: 0.9rem; color: var(--text-muted);">Status Servis Saat Ini</div>
+            <div id="resStatusLabel"></div>
+          </div>
+
+          <div class="timeline" style="display:none;">
+            <div class="timeline-step" id="step-diterima">
+              <div class="dot"></div>
+              <span>Diterima</span>
+            </div>
+            <div class="timeline-step" id="step-diproses">
+              <div class="dot"></div>
+              <span>Diproses</span>
+            </div>
+            <div class="timeline-step" id="step-selesai">
+              <div class="dot"></div>
+              <span>Selesai</span>
+            </div>
+          </div>
+
+          <div class="timeline-v2" id="timelineV2">
+            <div class="timeline-v2-step" data-step="diterima">
+              <div class="timeline-v2-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+              <div class="timeline-v2-content"><h4>Perangkat Diterima</h4><p>Perangkat telah sampai di workshop FIXIN</p></div>
+            </div>
+            <div class="timeline-v2-step" data-step="diagnosis">
+              <div class="timeline-v2-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+              <div class="timeline-v2-content"><h4>Diagnosis</h4><p>Teknisi memeriksa kondisi perangkat</p></div>
+            </div>
+            <div class="timeline-v2-step" data-step="persetujuan">
+              <div class="timeline-v2-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+              <div class="timeline-v2-content"><h4>Menunggu Persetujuan</h4><p>Menunggu konfirmasi pelanggan untuk memulai perbaikan</p></div>
+            </div>
+            <div class="timeline-v2-step" data-step="dikerjakan">
+              <div class="timeline-v2-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+              <div class="timeline-v2-content"><h4>Sedang Dikerjakan</h4><p>Teknisi sedang melakukan perbaikan</p></div>
+            </div>
+            <div class="timeline-v2-step" data-step="selesai">
+              <div class="timeline-v2-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="timeline-v2-content"><h4>Selesai</h4><p>Perbaikan telah selesai dilakukan</p></div>
+            </div>
+            <div class="timeline-v2-step" data-step="diambil">
+              <div class="timeline-v2-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+              <div class="timeline-v2-content"><h4>Siap Diambil</h4><p>Perangkat siap diambil atau dikirim kembali</p></div>
+            </div>
+          </div>
+
+          <!-- Card Diagnosis (muncul saat status = Menunggu Persetujuan) -->
+          <div id="diagnosisCard" style="display:none; margin-top:24px; background:var(--gray-bg); border:1px solid var(--gray-border); border-radius:var(--radius-md); padding:22px 24px;">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <strong style="color:var(--navy);">Hasil Diagnosis Teknisi</strong>
+            </div>
+            <div class="summary-row"><span style="color:var(--text-muted);">Temuan</span><span id="diagResHasil" style="text-align:right; font-weight:500;">-</span></div>
+            <div class="summary-row"><span style="color:var(--text-muted);">Estimasi Biaya</span><span id="diagResBiaya" style="font-weight:700; color:var(--navy);">-</span></div>
+            <div class="summary-row"><span style="color:var(--text-muted);">Estimasi Pengerjaan</span><span id="diagResWaktu" style="font-weight:500;">-</span></div>
+            <div id="diagResCatatanRow" class="summary-row" style="display:none;"><span style="color:var(--text-muted);">Catatan Teknisi</span><span id="diagResCatatan" style="text-align:right;">-</span></div>
+            <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;">
+              <button type="button" class="btn btn-teal" id="btnSetujuiPerbaikan">✓ Setujui Perbaikan</button>
+              <a href="https://wa.me/6281234567890?text=Halo%20FIXIN%2C%20saya%20ingin%20bertanya%20mengenai%20hasil%20diagnosis%20servis%20saya." target="_blank" rel="noopener" class="btn btn-outline-dark">Hubungi FIXIN</a>
+            </div>
+          </div>
+
+          <button type="button" id="simulateStatus" class="btn btn-outline-dark" style="margin-top:28px;">
+            Update Status (Simulasi Demo)
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        &copy; 2026 FIXIN. lorem ipsum dolor sit amet.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/tracking.js"></script>
+  <script src="js/animations.js"></script>
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/6281234567890?text=Halo%20FIXIN%2C%20saya%20ingin%20konsultasi%20mengenai%20servis%20perangkat%20saya." target="_blank" rel="noopener" class="wa-float" aria-label="Chat WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+</body>
+</html>
+

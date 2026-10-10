@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout - FIXIN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">FIX<span>IN</span></a>
+      <nav class="nav-links">
+        <a href="index.html">Beranda</a>
+        <a href="index.html#layanan">Layanan</a>
+        <a href="booking.html">Booking</a>
+        <a href="tracking.html">Lacak Servis</a>
+        <a href="index.html#tentang">Tentang</a>
+      </nav>
+      <span class="nav-auth" id="navAuthArea"></span>
+      <button class="nav-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="page-header">
+    <div class="container">
+      <div class="page-header-back">
+        <a href="booking.html" class="back-btn" onclick="return goBack('booking.html')">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Kembali
+          </a>
+      </div>
+      <h1>Checkout</h1>
+      <p>Ringkasan pesanan servis kamu dan pembayaran.</p>
+    </div>
+  </section>
+
+  <section class="section booking-section">
+    <div class="container">
+      <div class="form-card" id="checkoutCard">
+
+        <div id="checkoutNotFound" class="hidden">
+          <h3>Order tidak ditemukan</h3>
+          <p class="form-note">Pastikan kamu membuka halaman ini melalui link setelah booking. <a href="booking.html" style="color:#17b3a3;font-weight:600;">Buat booking baru</a>.</p>
+        </div>
+
+        <div id="checkoutContent">
+          <div class="order-summary" style="margin-bottom: 24px;">
+            <h4>Ringkasan Pesanan</h4>
+            <div class="summary-row"><span>Kode Servis</span><span id="coKode">-</span></div>
+            <div class="summary-row"><span>Nama Pelanggan</span><span id="coNama">-</span></div>
+            <div class="summary-row"><span>Layanan</span><span id="coLayanan">-</span></div>
+            <div class="summary-row"><span>Metode</span><span id="coMetode">-</span></div>
+            <div class="summary-row hidden" id="coAlamatRow"><span>Alamat Jemput</span><span id="coAlamat">-</span></div>
+            <div class="summary-row"><span>Biaya Layanan</span><span id="coSubtotal">Rp 0</span></div>
+            <div class="summary-row"><span>Biaya Jemput</span><span id="coOngkir">Rp 0</span></div>
+            <div class="summary-row total"><span>Total</span><span id="coTotal">Rp 0</span></div>
+          </div>
+
+          <p class="form-note" id="coPaymentStatusRow" style="margin-bottom:20px; font-size:0.95rem;">
+            Status pembayaran saat ini: <strong id="coPaymentStatus" class="payment-status">-</strong>
+          </p>
+
+          <div id="checkoutMessage" class="status-note hidden"></div>
+
+          <!-- ====================================================
+               PEMBAYARAN MIDTRANS
+               Client Key BOLEH ada di frontend (memang dirancang publik).
+               Server Key TIDAK BOLEH pernah muncul di file ini/HTML manapun.
+               Ganti YOUR_SANDBOX_CLIENT_KEY di <script data-client-key>
+               di bawah dengan Client Key sandbox asli saat deploy.
+          ==================================================== -->
+          <button type="button" class="btn btn-teal btn-block" id="btnBayarMidtrans">
+            Bayar dengan Midtrans
+          </button>
+
+          <!-- ====================================================
+               DEMO PAYMENT MODE
+               Tampil otomatis kalau endpoint pembuat Snap Token
+               (/api/midtrans-token) tidak tersedia, supaya presentasi
+               frontend-only tetap bisa mendemokan alur pembayaran.
+          ==================================================== -->
+          <div id="demoPaymentBox" class="order-summary hidden" style="margin-top:18px;">
+            <h4>Demo Payment Mode</h4>
+            <p class="form-note" style="margin-bottom:14px;">
+              Endpoint pembuat Snap Token belum tersedia (wajar, karena project ini frontend-only).
+              Gunakan tombol simulasi di bawah untuk mendemokan hasil pembayaran.
+            </p>
+            <div class="delivery-options">
+              <button type="button" class="btn btn-outline-dark" id="btnSimulasiLunas">Simulasikan Lunas</button>
+              <button type="button" class="btn btn-outline-dark" id="btnSimulasiPending">Simulasikan Pending</button>
+            </div>
+            <button type="button" class="btn btn-outline-dark btn-block" id="btnSimulasiGagal" style="margin-top:14px;">Simulasikan Gagal</button>
+          </div>
+
+          <p class="form-note" style="margin-top:18px;">
+            Kode servis <strong id="coKode2"></strong> tetap bisa dicek kapan saja di
+            <a href="tracking.html" style="color:#17b3a3;font-weight:600;">halaman Lacak Servis</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        &copy; 2026 FIXIN. lorem ipsum dolor sit amet.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====================================================
+       PRODUKSI: Midtrans Snap Sandbox loader.
+       data-client-key HANYA client key (aman di publik), BUKAN server key.
+       Ganti placeholder di bawah dengan sandbox client key asli saat dipakai
+       beneran. Kalau script ini gagal load (offline/diblokir), js/checkout.js
+       tetap fallback ke DEMO PAYMENT MODE, jadi halaman tidak error.
+  ==================================================== -->
+  <script
+    src="https://app.sandbox.midtrans.com/snap/snap.js"
+    data-client-key="YOUR_SANDBOX_CLIENT_KEY"
+    onerror="console.warn('Snap.js sandbox gagal dimuat, checkout.js akan fallback ke demo payment mode.')">
+  </script>
+
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>

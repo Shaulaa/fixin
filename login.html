@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Masuk - FIXIN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <script>document.documentElement.classList.add("js-anim");</script>
+</head>
+<body>
+
+  <header class="navbar navbar-auth">
+    <div class="container">
+      <a href="index.html" class="logo">FIX<span>IN</span></a>
+      <a href="index.html" class="btn btn-outline-dark">Kembali ke Beranda</a>
+    </div>
+  </header>
+
+  <section class="section auth-section">
+    <div class="container">
+      <div class="form-card auth-card">
+        <div class="auth-card-intro">
+          <span class="eyebrow">Masuk Akun</span>
+          <h2>Selamat datang kembali</h2>
+          <p>Masuk untuk melihat riwayat servis, tracking status, dan invoice kamu.</p>
+        </div>
+
+        <p class="auth-error" id="loginError">Email atau password salah. Coba lagi.</p>
+
+        <form id="loginForm" novalidate>
+          <div class="field" style="margin-bottom: 18px;">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required autocomplete="username" />
+          </div>
+
+          <div class="field password-field" style="margin-bottom: 22px;">
+            <label for="password">Password</label>
+            <div class="password-wrap">
+              <input type="password" id="password" name="password" required autocomplete="current-password" />
+              <button type="button" class="toggle-password" id="togglePassword" aria-label="Tampilkan password">Tampilkan</button>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-teal btn-block">Masuk</button>
+        </form>
+
+        <div class="auth-demo-hint">
+          <strong>Akun demo</strong><br />
+          User &middot; user@fixin.test / user123<br />
+          Admin &middot; admin@fixin.test / admin123
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        &copy; 2026 FIXIN. lorem ipsum dolor sit amet.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/animations.js"></script>
+</body>
+</html>

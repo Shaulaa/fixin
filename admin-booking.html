@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daftar Booking - Admin FIXIN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+
+  <div id="adminBookingPage">
+
+    <header class="navbar admin-topbar">
+      <div class="container">
+        <a href="admin-dashboard.html" class="logo">FIX<span>IN</span> <span style="font-size:0.7rem; font-weight:500; opacity:0.7;">Admin</span></a>
+        <nav class="nav-links">
+          <a href="admin-dashboard.html">Dashboard</a>
+          <a href="admin-booking.html" class="active">Booking</a>
+          <a href="admin-products.html">Produk/Layanan</a>
+          <a href="admin-reports.html">Laporan</a>
+        </nav>
+        <a href="#" id="logoutBtn" class="btn btn-outline">Keluar</a>
+        <button class="nav-toggle" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <section class="admin-content">
+      <div class="container">
+        <div class="admin-page-head">
+          <div>
+            <span class="eyebrow">Manajemen</span>
+            <h1>Daftar Booking</h1>
+            <p>Kelola semua booking servis pelanggan FIXIN.</p>
+          </div>
+        </div>
+
+        <div class="admin-filters">
+          <input type="search" id="searchInput" placeholder="Cari kode servis, nama, no HP..." />
+          <select id="filterStatus">
+            <option value="Semua">Semua Status</option>
+          </select>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Kode Servis</th>
+                <th>Customer</th>
+                <th>Perangkat</th>
+                <th>Layanan</th>
+                <th>Tanggal</th>
+                <th>Status</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTableBody">
+              <!-- Data dimuat dari admin.js -->
+            </tbody>
+          </table>
+          <p class="admin-table-empty" id="ordersEmptyState" style="display:none;">Tidak ada booking yang cocok dengan pencarian.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

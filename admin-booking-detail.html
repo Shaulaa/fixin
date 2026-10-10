@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detail Booking - Admin FIXIN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+
+  <div id="adminBookingDetailPage">
+
+    <header class="navbar admin-topbar">
+      <div class="container">
+        <a href="admin-dashboard.html" class="logo">FIX<span>IN</span> <span style="font-size:0.7rem; font-weight:500; opacity:0.7;">Admin</span></a>
+        <nav class="nav-links">
+          <a href="admin-dashboard.html">Dashboard</a>
+          <a href="admin-booking.html">Booking</a>
+          <a href="admin-products.html">Produk/Layanan</a>
+          <a href="admin-reports.html">Laporan</a>
+        </nav>
+        <a href="#" id="logoutBtn" class="btn btn-outline">Keluar</a>
+        <button class="nav-toggle" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <section class="admin-content">
+      <div class="container">
+        <a href="admin-booking.html" class="back-btn back-btn-dark" onclick="return goBack('admin-booking.html')">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Kembali ke Booking
+        </a>
+
+        <div class="admin-page-head">
+          <div>
+            <span class="eyebrow">Detail Booking</span>
+            <h1 id="detailServiceCode">Kode Layanan</h1>
+            <p>Status saat ini: <span class="status-badge" id="detailStatusBadge">-</span></p>
+          </div>
+        </div>
+
+        <div class="detail-grid">
+          <div class="order-card">
+            <h3>Data Customer</h3>
+            <div class="summary-row"><span>Nama</span><span id="detailCustomerName">-</span></div>
+            <div class="summary-row"><span>No. HP</span><span id="detailCustomerPhone">-</span></div>
+          </div>
+
+          <div class="order-card">
+            <h3>Informasi Servis</h3>
+            <div class="summary-row"><span>Kode Servis</span><span id="detailServiceCode2">-</span></div>
+            <div class="summary-row"><span>Tanggal Booking</span><span id="detailDate">-</span></div>
+            <div class="summary-row"><span>Metode Antar/Jemput</span><span id="detailMethod">-</span></div>
+            <div class="summary-row"><span>Perangkat</span><span id="detailDevice">-</span></div>
+            <div class="summary-row"><span>Layanan</span><span id="detailService">-</span></div>
+            <div class="summary-row"><span>Keluhan</span><span id="detailComplaint">-</span></div>
+          </div>
+
+          <div class="order-card" id="cardDiagnosis" style="display:none;">
+            <h3>Hasil Diagnosis</h3>
+            <div class="field" style="margin-bottom:12px;">
+              <label for="diagHasil">Hasil Pemeriksaan</label>
+              <textarea id="diagHasil" class="order-detail-select" rows="3" placeholder="Contoh: LCD rusak, perlu ganti. Baterai masih normal."></textarea>
+            </div>
+            <div class="field" style="margin-bottom:12px;">
+              <label for="diagBiaya">Estimasi Biaya</label>
+              <input type="number" id="diagBiaya" class="order-detail-select" placeholder="Contoh: 350000" />
+            </div>
+            <div class="field" style="margin-bottom:12px;">
+              <label for="diagWaktu">Estimasi Pengerjaan</label>
+              <input type="text" id="diagWaktu" class="order-detail-select" placeholder="Contoh: 2-3 Hari Kerja" />
+            </div>
+            <div class="field" style="margin-bottom:16px;">
+              <label for="diagCatatan">Catatan Teknisi (Opsional)</label>
+              <textarea id="diagCatatan" class="order-detail-select" rows="2" placeholder="Catatan tambahan untuk pelanggan..."></textarea>
+            </div>
+            <div class="order-card-actions">
+              <button type="button" class="btn btn-teal" id="btnSimpanDiagnosis">Kirim Diagnosis ke Customer</button>
+            </div>
+          </div>
+
+          <div class="order-card">
+            <h3>Aksi Admin</h3>
+            <p id="adminPaymentNotice" role="status" hidden>Booking masih Pending. Proses servis dapat dilanjutkan setelah pembayaran lunas.</p>
+            <p style="margin-bottom: 16px; color: var(--text-muted); font-size: 0.9rem;">
+              Konfirmasi booking untuk melanjutkan proses servis.
+            </p>
+            <div class="order-card-actions">
+              <button type="button" class="btn btn-teal" id="btnKonfirmasi">Konfirmasi Booking</button>
+              <button type="button" class="btn btn-navy" id="btnTerimaPerangkat">Tandai Perangkat Diterima</button>
+            </div>
+            <hr style="margin: 20px 0; border: none; border-top: 1px solid var(--gray-border);" />
+            <div class="field">
+              <label for="statusSelect">Ubah Status Servis</label>
+              <select class="order-detail-select" id="statusSelect"></select>
+            </div>
+            <div class="order-card-actions" style="margin-top: 12px;">
+              <button type="button" class="btn btn-outline-dark" id="btnUbahStatus">Simpan Status</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invoice - FIXIN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+
+    <!--
+      Cetak Struk (khusus halaman invoice): sembunyikan seluruh halaman
+      kecuali #strukPrintArea, lalu paksa ukuran kertas kecil ala printer
+      thermal (80mm) supaya hasil cetak rapi & tidak kepotong.
+      Pola "sembunyikan semua kecuali area print" sama dengan yang dipakai
+      di css/dashboard.css (@media print #strukPrintArea), tapi ukuran
+      kertas & tipografi di sini dikhususkan untuk struk thermal.
+    -->
+    <style>
+    #strukPrintArea {
+      display: none;
+    }
+
+    @media print {
+      @page {
+        size: 80mm auto;
+        margin: 0;
+      }
+
+      body * {
+        visibility: hidden;
+      }
+
+      #strukPrintArea,
+      #strukPrintArea * {
+        visibility: visible;
+      }
+
+      #strukPrintArea {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 80mm;
+        padding: 8px 10px 14px;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 11px;
+        line-height: 1.45;
+        color: #000;
+      }
+
+      #strukPrintArea .struk-logo {
+        text-align: center;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 2px;
+      }
+
+      #strukPrintArea .struk-tagline {
+        text-align: center;
+        font-size: 10px;
+        margin-bottom: 8px;
+      }
+
+      #strukPrintArea hr {
+        border: none;
+        border-top: 1px dashed #000;
+        margin: 6px 0;
+      }
+
+      #strukPrintArea .struk-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 6px;
+      }
+
+      #strukPrintArea .struk-total {
+        font-weight: 700;
+        font-size: 12px;
+      }
+
+      #strukPrintArea .struk-footer {
+        text-align: center;
+        margin-top: 10px;
+        font-size: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">FIX<span>IN</span></a>
+      <nav class="nav-links">
+        <a href="index.html">Beranda</a>
+        <a href="index.html#layanan">Layanan</a>
+        <a href="booking.html">Booking</a>
+        <a href="tracking.html" data-invoice-tracking>Lacak Servis</a>
+        <a href="index.html#tentang">Tentang</a>
+      </nav>
+      <a href="user-dashboard.html" class="btn btn-teal nav-cta-btn">Dashboard Saya</a>
+      <button class="nav-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="page-header">
+    <div class="container">
+      <div class="page-header-back">
+        <a href="user-dashboard.html" class="back-btn" onclick="return goBack('user-dashboard.html')">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Kembali
+          </a>
+      </div>
+      <h1>Invoice</h1>
+      <p>Bukti pembayaran servis kamu.</p>
+    </div>
+  </section>
+
+  <section class="section booking-section">
+    <div class="container">
+      <div class="form-card" id="invoiceCard">
+
+        <div id="invoiceNotFound" class="hidden">
+          <h3>Order tidak ditemukan</h3>
+          <p class="form-note">
+            Order ini tidak ditemukan, atau bukan milik akun yang sedang login.
+            Pastikan kamu membuka halaman ini lewat link setelah checkout, atau cek
+            <a href="user-dashboard.html" style="color:#17b3a3;font-weight:600;">Dashboard</a> kamu.
+            <a href="booking.html" style="color:#17b3a3;font-weight:600;">Buat booking baru</a>.
+          </p>
+        </div>
+
+        <div id="invoiceContent">
+          <div class="order-summary" style="margin-bottom: 20px;">
+            <h4>FIX<span style="color:#17b3a3;">IN</span> &middot; Invoice</h4>
+
+            <div class="summary-row"><span>No. Invoice / Order</span><span id="invNomor">-</span></div>
+            <div class="summary-row"><span>Tanggal</span><span id="invTanggal">-</span></div>
+
+            <hr style="border:none;border-top:1px dashed var(--gray-border);margin:12px 0;" />
+
+            <div class="summary-row"><span>Nama Pelanggan</span><span id="invNama">-</span></div>
+            <div class="summary-row"><span>Email</span><span id="invEmail">-</span></div>
+            <div class="summary-row"><span>No. HP</span><span id="invTelepon">-</span></div>
+
+            <hr style="border:none;border-top:1px dashed var(--gray-border);margin:12px 0;" />
+
+            <div class="summary-row"><span>Layanan</span><span id="invLayanan">-</span></div>
+            <div class="summary-row"><span>Metode</span><span id="invMetode">-</span></div>
+            <div class="summary-row hidden" id="invAlamatRow"><span>Alamat Jemput</span><span id="invAlamat">-</span></div>
+
+            <hr style="border:none;border-top:1px dashed var(--gray-border);margin:12px 0;" />
+
+            <div class="summary-row"><span>Subtotal Layanan</span><span id="invSubtotal">Rp 0</span></div>
+            <div class="summary-row hidden" id="invOngkirRow"><span>Biaya Jemput</span><span id="invOngkir">Rp 0</span></div>
+            <div class="summary-row total"><span>Total</span><span id="invTotal">Rp 0</span></div>
+          </div>
+
+          <p class="form-note" style="margin-bottom:18px;">
+            Status pembayaran: <strong id="invPaymentStatus" class="payment-status">-</strong>
+          </p>
+
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <button type="button" class="btn btn-teal" id="btnDownloadInvoice">Unduh Invoice (PDF)</button>
+            <button type="button" class="btn btn-outline-dark" id="btnCetakStruk">Cetak Struk</button>
+          </div>
+
+          <p class="form-note" style="margin-top:14px;">
+            Kode servis <strong id="invKode2"></strong> juga bisa kamu cek di
+            <a href="tracking.html" data-invoice-tracking style="color:#17b3a3;font-weight:600;">halaman Lacak Servis</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        &copy; 2026 FIXIN. lorem ipsum dolor sit amet.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Area cetak struk thermal-friendly (hanya tampil saat window.print(), lihat <style> @media print di atas) -->
+  <div id="strukPrintArea">
+    <div class="struk-logo">FIXIN</div>
+    <div class="struk-tagline">Servis HP, Laptop &amp; Tablet</div>
+    <hr />
+    <div class="struk-row"><span>No. Order</span><span id="strukKode">-</span></div>
+    <div class="struk-row"><span>Tanggal</span><span id="strukTanggal">-</span></div>
+    <div class="struk-row"><span>Pelanggan</span><span id="strukNama">-</span></div>
+    <hr />
+    <div class="struk-row"><span id="strukLayananLabel">Layanan</span><span id="strukLayanan">-</span></div>
+    <div class="struk-row"><span>Metode</span><span id="strukMetode">-</span></div>
+    <hr />
+    <div class="struk-row"><span>Subtotal</span><span id="strukSubtotal">Rp 0</span></div>
+    <div class="struk-row hidden" id="strukOngkirRow"><span>Biaya Jemput</span><span id="strukOngkir">Rp 0</span></div>
+    <div class="struk-row struk-total"><span>TOTAL</span><span id="strukTotal">Rp 0</span></div>
+    <hr />
+    <div class="struk-row"><span>Status Bayar</span><span id="strukStatusBayar">-</span></div>
+    <div class="struk-footer">Terima kasih telah menggunakan FIXIN</div>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+
+  <!-- jsPDF + AutoTable, dipakai untuk generate PDF invoice dari DATA transaksi
+       (bukan screenshot). Kalau CDN gagal dimuat (mis. offline), tombol
+       "Unduh Invoice (PDF)" akan menampilkan pesan error, lihat js/invoice.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+
+  <script src="js/invoice.js"></script>
+</body>
+</html>

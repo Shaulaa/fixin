@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Admin - FIXIN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+
+  <div id="adminDashboardPage">
+
+    <header class="navbar admin-topbar">
+      <div class="container">
+        <a href="admin-dashboard.html" class="logo">FIX<span>IN</span> <span style="font-size:0.7rem; font-weight:500; opacity:0.7;">Admin</span></a>
+        <nav class="nav-links">
+          <a href="admin-dashboard.html" class="active">Dashboard</a>
+          <a href="admin-booking.html">Booking</a>
+          <a href="admin-products.html">Produk/Layanan</a>
+          <a href="admin-reports.html">Laporan</a>
+        </nav>
+        <a href="#" id="logoutBtn" class="btn btn-outline">Keluar</a>
+        <button class="nav-toggle" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <section class="admin-content">
+      <div class="container">
+        <div class="admin-page-head">
+          <div>
+            <span class="eyebrow">Ringkasan</span>
+            <h1>Dashboard Admin</h1>
+            <p>Pantau performa booking servis FIXIN secara singkat.</p>
+          </div>
+          <a href="admin-booking.html" class="btn btn-teal">Kelola Booking</a>
+        </div>
+
+        <div class="stat-cards stat-cards-4">
+          <div class="stat-card stat-active">
+            <div class="stat-top">
+              <div class="stat-label">Booking Baru</div>
+              <span class="stat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+              </span>
+            </div>
+            <div class="stat-value" id="statBookingBaru">0</div>
+          </div>
+          <div class="stat-card stat-progress">
+            <div class="stat-top">
+              <div class="stat-label">Sedang Diproses</div>
+              <span class="stat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg>
+              </span>
+            </div>
+            <div class="stat-value" id="statSedangDiproses">0</div>
+          </div>
+          <div class="stat-card stat-warning">
+            <div class="stat-top">
+              <div class="stat-label">Menunggu Persetujuan</div>
+              <span class="stat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 4v6c0 5-3.5 8.5-9 10-5.5-1.5-9-5-9-10V6l9-4z"/><line x1="12" y1="8" x2="12" y2="13"/><line x1="12" y1="16.5" x2="12" y2="16.5"/></svg>
+              </span>
+            </div>
+            <div class="stat-value" id="statMenungguPersetujuan">0</div>
+          </div>
+          <div class="stat-card stat-done">
+            <div class="stat-top">
+              <div class="stat-label">Selesai</div>
+              <span class="stat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </span>
+            </div>
+            <div class="stat-value" id="statSelesai">0</div>
+          </div>
+        </div>
+
+        <div class="section-title-row">
+          <h2>Booking Terbaru</h2>
+          <a href="admin-booking.html" class="btn btn-outline-dark">Lihat Semua Booking</a>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Kode Servis</th>
+                <th>Customer</th>
+                <th>Perangkat</th>
+                <th>Layanan</th>
+                <th>Tanggal</th>
+                <th>Status</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="recentTransactionsBody">
+              <!-- Data booking terbaru akan dimuat disini -->
+            </tbody>
+          </table>
+          <p class="admin-table-empty" id="recentTransactionsEmpty" style="display:none;">Belum ada booking masuk.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

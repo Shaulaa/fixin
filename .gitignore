@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Local environment files; keep the example template shareable.
+.env
+.env.*
+!.env.example
+
+# Private keys and certificates
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+credentials.json
+service-account*.json
+
+# Vercel local configuration
+.vercel/

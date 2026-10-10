@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIXIN - Servis Laptop & HP Terpercaya</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <script>document.documentElement.classList.add("js-anim");</script>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">FIX<span>IN</span></a>
+      <nav class="nav-links">
+        <a href="index.html#beranda" class="active">Beranda</a>
+        <a href="index.html#layanan">Layanan</a>
+        <a href="index.html#tentang">Tentang Kami</a>
+        <a href="booking.html">Booking</a>
+        <a href="tracking.html">Lacak Servis</a>
+      </nav>
+      <span class="nav-auth" id="navAuthArea"></span>
+      <button class="nav-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="beranda">
+    <div class="container">
+      <div class="hero-top">
+        <div class="hero-text">
+          <span class="eyebrow">Mitra servis terpercaya</span>
+          <h1>Servis laptop dan HP <span class="accent">cepat</span> serta terpercaya.</h1>
+          <p>Kami menyediakan layanan servis laptop dan HP yang cepat dan andal untuk mengembalikan perangkatmu ke kondisi terbaik. Layar retak, baterai bermasalah, atau kendala software, semua kami tangani.</p>
+          <div class="hero-actions">
+            <a href="#tentang" class="btn btn-outline">Tentang Kami</a>
+            <a href="#layanan" class="btn btn-teal">Lihat Layanan</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="quick-booking" style="display:block; grid-template-columns:none;">
+        <h3 style="color:#fff; margin-bottom:8px;">Siap servis perangkatmu?</h3>
+        <p style="color:#eafaf7; margin-bottom:18px;">Booking online sekarang, pilih metode antar/jemput, dan pantau status perbaikannya.</p>
+        <a href="booking.html" class="btn btn-navy">Booking Sekarang</a>
+      </div>
+      <div class="hero-spacer"></div>
+    </div>
+  </section>
+
+  <!-- LAYANAN -->
+  <section class="section section-bg" id="layanan">
+    <div class="container">
+      <div class="section-head-row">
+        <div>
+          <span class="eyebrow">Layanan</span>
+          <h2 class="section-heading">Layanan servis yang kami sediakan</h2>
+          <p class="section-desc">Pilihan layanan servis untuk HP, laptop, dan tablet dengan harga transparan. Klik kartu untuk melihat detail dan garansi.</p>
+        </div>
+      </div>
+
+      <div class="service-grid" id="catalogGrid">
+        <!-- Diisi otomatis dari fixin_products (produk aktif saja) lewat js/products.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE CARDS (Why Choose FIXIN) -->
+  <section class="section section-tint-teal">
+    <div class="container">
+      <div class="section-head-row section-head-center" style="margin-bottom:36px;">
+        <div>
+          <span class="eyebrow">Kenapa FIXIN?</span>
+          <h2 class="section-heading">Keunggulan layanan kami</h2>
+        </div>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="icon-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06-.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </div>
+          <h3>Servis Elektronik Terbaik</h3>
+          <p>Layanan servis untuk semua perangkat, mulai dari HP sampai laptop, dikerjakan oleh teknisi berpengalaman.</p>
+          <div class="step-no">01</div>
+        </div>
+        <div class="feature-card">
+          <div class="icon-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Tim Berpengalaman</h3>
+          <p>Teknisi kami sudah menangani ratusan kasus servis, mulai dari kerusakan ringan hingga yang cukup rumit.</p>
+          <div class="step-no">02</div>
+        </div>
+        <div class="feature-card">
+          <div class="icon-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Garansi Servis Aman</h3>
+          <p>Setiap perbaikan yang kami lakukan disertai garansi, jadi kamu bisa lebih tenang setelah servis selesai.</p>
+          <div class="step-no">03</div>
+        </div>
+        <div class="feature-card">
+          <div class="icon-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0-1.4 0l-6 6a1 1 0 0 0 0 1.4l3 3a1 1 0 0 0 1.4 0l6-6a1 1 0 0 0 0-1.4z"/><path d="M9 5 6 2M19 15l3 3M12 2v2M2 12h2M20 12h2M12 20v2"/></svg>
+          </div>
+          <h3>Diagnosis Transparan</h3>
+          <p>Hasil pemeriksaan disampaikan secara jelas sebelum perbaikan dimulai, tanpa ada biaya tersembunyi.</p>
+          <div class="step-no">04</div>
+        </div>
+        <div class="feature-card">
+          <div class="icon-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3>Pengerjaan Cepat</h3>
+          <p>Servis ringan bisa selesai dalam hitungan jam, bukan hari. Kami menghargai waktu pelanggan.</p>
+          <div class="step-no">05</div>
+        </div>
+        <div class="feature-card">
+          <div class="icon-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
+          <h3>Sparepart Berkualitas</h3>
+          <p>Kami menggunakan sparepart original atau kompatibel berkualitas untuk menjamin hasil perbaikan.</p>
+          <div class="step-no">06</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TENTANG -->
+  <section class="section section-tint-navy" id="tentang">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual">
+          <div class="img-box">
+            <img src="img/tentang1.jpg" alt="Tim FIXIN melayani perbaikan perangkat" />
+          </div>
+          <div class="badge-years">
+            <strong>10+</strong>
+            <span>Tahun Pengalaman</span>
+          </div>
+        </div>
+        <div class="about-text">
+          <span class="eyebrow">Tentang Kami</span>
+          <h2 class="section-heading">Kami menyediakan servis berkualitas untuk perangkatmu</h2>
+          <p class="section-desc">FIXIN menangani perbaikan HP, laptop, dan tablet dengan proses kerja yang jelas dan harga transparan, sehingga pelanggan tahu persis apa yang mereka bayar.</p>
+
+          <div class="about-points">
+            <div class="about-point">
+              <div class="icon-circle-sm">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 6v6c0 5 4 9 9 10 5-1 9-5 9-10V6z"/></svg>
+              </div>
+              <div>
+                <h4>Servis Aman & Bergaransi</h4>
+                <p>Setiap perbaikan dicatat dan disertai garansi sesuai jenis layanan.</p>
+              </div>
+            </div>
+            <div class="about-point">
+              <div class="icon-circle-sm">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <h4>Proses Cepat</h4>
+                <p>Sebagian besar servis ringan selesai dalam hitungan jam, bukan hari.</p>
+              </div>
+            </div>
+            <div class="about-point">
+              <div class="icon-circle-sm">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+              <div>
+                <h4>Harga Transparan</h4>
+                <p>Estimasi biaya disampaikan di awal, tanpa biaya tersembunyi.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESTIMASI HARGA -->
+  <section class="section section-tint-teal" id="estimasi">
+    <div class="container">
+      <div class="section-head-center">
+        <span class="eyebrow">Estimasi Harga</span>
+        <h2>Kisaran biaya servis</h2>
+        <p>Harga di bawah ini bersifat estimasi dan dapat berbeda tergantung tipe perangkat serta tingkat kerusakan.</p>
+      </div>
+
+      <div class="price-grid">
+        <div class="price-estimate-card">
+          <div class="price-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+          </div>
+          <h4>Install Ulang Laptop</h4>
+          <div class="price-tag">Mulai Rp100.000</div>
+        </div>
+        <div class="price-estimate-card">
+          <div class="price-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+          </div>
+          <h4>Upgrade SSD</h4>
+          <div class="price-tag">Mulai Rp250.000</div>
+        </div>
+        <div class="price-estimate-card">
+          <div class="price-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+          </div>
+          <h4>Ganti Keyboard Laptop</h4>
+          <div class="price-tag">Mulai Rp200.000</div>
+        </div>
+        <div class="price-estimate-card">
+          <div class="price-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+          </div>
+          <h4>Ganti Baterai Laptop</h4>
+          <div class="price-tag">Mulai Rp180.000</div>
+        </div>
+        <div class="price-estimate-card">
+          <div class="price-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+          </div>
+          <h4>Cleaning Laptop</h4>
+          <div class="price-tag">Mulai Rp75.000</div>
+        </div>
+        <div class="price-estimate-card">
+          <div class="price-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <h4>Ganti LCD HP</h4>
+          <div class="price-tag">Mulai Rp300.000</div>
+        </div>
+        <div class="price-estimate-card">
+          <div class="price-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <h4>Ganti Baterai HP</h4>
+          <div class="price-tag">Mulai Rp150.000</div>
+        </div>
+        <div class="price-estimate-card">
+          <div class="price-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06-.06a2 2 0 1 1-2.83-2.83l.06.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </div>
+          <h4>Perbaikan Software</h4>
+          <div class="price-tag">Mulai Rp60.000</div>
+        </div>
+      </div>
+
+      <div class="price-disclaimer">
+        <p>⚠️ Harga dapat berubah tergantung tipe perangkat, tingkat kerusakan, dan hasil pemeriksaan teknisi. Estimasi final akan disampaikan setelah diagnosis.</p>
+      </div>
+      <div class="price-cta">
+        <a href="#layanan" class="btn btn-outline-dark">Cek Layanan</a>
+        <a href="booking.html" class="btn btn-teal">Booking Servis</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONI -->
+  <section class="section section-bg" id="testimoni" aria-labelledby="testimoni-title">
+    <div class="container">
+      <div class="section-head-center">
+        <span class="eyebrow">Testimoni</span>
+        <h2 class="section-heading" id="testimoni-title">Cerita setelah servis di FIXIN</h2>
+        <p class="section-desc">Contoh testimoni untuk pratinjau tampilan. Ulasan pelanggan asli akan ditampilkan di sini.</p>
+      </div>
+      <div class="testi-controls">
+        <button class="btn btn-outline-dark" type="button" id="testimoniToggle" aria-controls="testimoniRows" aria-pressed="false" hidden>Jeda animasi</button>
+      </div>
+      <div id="testimoniRows">
+        <div class="testi-marquee-wrapper">
+          <div class="testi-marquee testi-marquee--left">
+            <div class="testi-marquee__track">
+              <figure class="testi-card">
+                <div class="testi-stars" aria-label="5 dari 5 bintang">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <blockquote class="testi-text">“Laptop kembali lancar setelah upgrade SSD. Penjelasan teknisinya mudah dipahami dan biaya sudah jelas dari awal.”</blockquote>
+                <figcaption class="testi-author"><div class="testi-avatar" aria-hidden="true">AP</div><div><strong>Andi P.</strong><span>Contoh ulasan · Upgrade SSD</span></div></figcaption>
+              </figure>
+              <figure class="testi-card">
+                <div class="testi-stars" aria-label="5 dari 5 bintang">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <blockquote class="testi-text">“Layar HP sudah normal lagi. Booking praktis, dan saya bisa melihat progres perbaikan lewat kode servis.”</blockquote>
+                <figcaption class="testi-author"><div class="testi-avatar" aria-hidden="true">SR</div><div><strong>Sinta R.</strong><span>Contoh ulasan · Ganti LCD HP</span></div></figcaption>
+              </figure>
+              <figure class="testi-card">
+                <div class="testi-stars" aria-label="5 dari 5 bintang">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <blockquote class="testi-text">“Laptop yang tadinya cepat panas sekarang lebih nyaman dipakai. Hasil pemeriksaan dijelaskan sebelum pengerjaan.”</blockquote>
+                <figcaption class="testi-author"><div class="testi-avatar" aria-hidden="true">DW</div><div><strong>Dimas W.</strong><span>Contoh ulasan · Cleaning laptop</span></div></figcaption>
+              </figure>
+              <figure class="testi-card">
+                <div class="testi-stars" aria-label="5 dari 5 bintang">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <blockquote class="testi-text">“Keyboard kembali enak digunakan untuk kerja. Prosesnya rapi, dan informasi garansi disampaikan dengan jelas.”</blockquote>
+                <figcaption class="testi-author"><div class="testi-avatar" aria-hidden="true">NK</div><div><strong>Nadia K.</strong><span>Contoh ulasan · Ganti keyboard</span></div></figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+        <div class="testi-marquee-wrapper">
+          <div class="testi-marquee testi-marquee--right">
+            <div class="testi-marquee__track">
+              <figure class="testi-card">
+                <div class="testi-stars" aria-label="5 dari 5 bintang">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <blockquote class="testi-text">“Baterai HP kembali tahan untuk aktivitas sehari-hari. Estimasi biaya dan waktu pengerjaan diberikan sejak awal.”</blockquote>
+                <figcaption class="testi-author"><div class="testi-avatar" aria-hidden="true">FA</div><div><strong>Fajar A.</strong><span>Contoh ulasan · Ganti baterai HP</span></div></figcaption>
+              </figure>
+              <figure class="testi-card">
+                <div class="testi-stars" aria-label="5 dari 5 bintang">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <blockquote class="testi-text">“Dibantu backup sebelum install ulang, jadi lebih tenang. Laptop sekarang siap dipakai lagi untuk kuliah.”</blockquote>
+                <figcaption class="testi-author"><div class="testi-avatar" aria-hidden="true">ML</div><div><strong>Maya L.</strong><span>Contoh ulasan · Install ulang</span></div></figcaption>
+              </figure>
+              <figure class="testi-card">
+                <div class="testi-stars" aria-label="5 dari 5 bintang">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <blockquote class="testi-text">“Masalah software dijelaskan dengan bahasa sederhana. Saya jadi tahu penyebabnya dan cara merawat perangkat.”</blockquote>
+                <figcaption class="testi-author"><div class="testi-avatar" aria-hidden="true">RH</div><div><strong>Rizky H.</strong><span>Contoh ulasan · Perbaikan software</span></div></figcaption>
+              </figure>
+              <figure class="testi-card">
+                <div class="testi-stars" aria-label="5 dari 5 bintang">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <blockquote class="testi-text">“Baterai laptop sudah diganti dan bisa dipakai tanpa terus tersambung charger. Pelayanannya ramah dan komunikatif.”</blockquote>
+                <figcaption class="testi-author"><div class="testi-avatar" aria-hidden="true">VT</div><div><strong>Vina T.</strong><span>Contoh ulasan · Ganti baterai laptop</span></div></figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-cta">
+    <div class="container">
+      <h2>Perangkatmu bermasalah?</h2>
+      <p>Booking servis sekarang dan lacak progresnya kapan saja lewat kode servis.</p>
+      <a href="booking.html" class="btn btn-navy">Booking Sekarang</a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-head-center">
+        <span class="eyebrow">FAQ</span>
+        <h2>Pertanyaan yang sering ditanyakan</h2>
+        <p>Temukan jawaban untuk pertanyaan umum seputar layanan servis FIXIN.</p>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Berapa lama proses servis?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Durasi tergantung jenis kerusakan. Servis ringan seperti install ulang atau cleaning bisa selesai dalam hitungan jam. Untuk kerusakan hardware seperti ganti layar atau baterai, estimasi 1-2 hari kerja. Kami selalu menginformasikan estimasi waktu sebelum memulai.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Apakah ada garansi servis?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Ya, setiap servis yang kami lakukan disertai garansi. Durasi garansi bervariasi tergantung jenis layanan, mulai dari 7 hari hingga 30 hari. Detail garansi akan disampaikan sebelum pengerjaan dimulai.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Apakah data di perangkat saya aman?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Keamanan data pelanggan adalah prioritas kami. Kami tidak mengakses data pribadi kecuali diperlukan untuk proses perbaikan. Untuk install ulang, kami akan menginformasikan jika ada risiko kehilangan data dan menawarkan backup terlebih dahulu.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Apakah semua kerusakan bisa diperbaiki?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Sebagian besar kerusakan bisa ditangani. Namun untuk kasus tertentu seperti kerusakan motherboard parah atau perangkat yang sudah discontinue sparepart-nya, kami akan menginformasikan secara jujur jika perbaikan tidak memungkinkan.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Bisa tahu estimasi harga sebelum servis?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Tentu! Kami selalu memberikan estimasi biaya setelah proses diagnosis awal. Tidak ada biaya tambahan tanpa persetujuan pelanggan terlebih dahulu.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Perangkat apa saja yang bisa diservis?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Kami melayani servis untuk HP (semua merek), laptop (semua merek dan tipe), serta tablet. Mulai dari kerusakan software hingga hardware.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Bagaimana cara mengecek progres servis?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Setelah booking, kamu akan mendapatkan kode servis unik. Gunakan kode tersebut di halaman Lacak Servis untuk memantau progres perbaikan secara real-time.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none; margin-top:0; padding: 24px 0; text-align:center;">
+        &copy; 2026 FIXIN. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/6289636941753?text=Halo%20FIXIN%2C%20saya%20ingin%20konsultasi%20mengenai%20servis%20perangkat%20saya." target="_blank" rel="noopener" class="wa-float" aria-label="Chat WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+</body>
+</html>

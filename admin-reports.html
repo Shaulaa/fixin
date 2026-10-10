@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laporan - Admin FIXIN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+
+  <div id="adminReportsPage">
+
+    <header class="navbar admin-topbar">
+      <div class="container">
+        <a href="admin-dashboard.html" class="logo">FIX<span>IN</span> <span style="font-size:0.7rem; font-weight:500; opacity:0.7;">Admin</span></a>
+        <nav class="nav-links">
+          <a href="admin-dashboard.html">Dashboard</a>
+          <a href="admin-booking.html">Booking</a>
+          <a href="admin-products.html">Produk/Layanan</a>
+          <a href="admin-reports.html" class="active">Laporan</a>
+        </nav>
+        <a href="#" id="logoutBtn" class="btn btn-outline">Keluar</a>
+        <button class="nav-toggle" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <section class="admin-content">
+      <div class="container">
+        <div class="admin-page-head">
+          <div>
+            <span class="eyebrow">Manajemen</span>
+            <h1>Laporan Keuangan & Servis</h1>
+            <p>Ringkasan transaksi dan cetak laporan.</p>
+          </div>
+          <button type="button" class="btn btn-teal btn-export" id="btnExportExcel">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:16px;height:16px;margin-right:8px;vertical-align:middle;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Export Excel
+          </button>
+        </div>
+
+        <div class="order-card" style="margin-bottom: 24px; padding: 20px;">
+          <h3 style="margin-bottom:16px; font-size:1rem;">Filter Laporan</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; align-items: end;">
+            <div class="field">
+              <label for="filterPeriode">Periode</label>
+              <select id="filterPeriode" class="order-detail-select">
+                <option value="semua">Semua Waktu</option>
+                <option value="harian">Hari Ini</option>
+                <option value="tanggal">Pilih Tanggal</option>
+                <option value="rentang">Rentang Tanggal</option>
+                <option value="mingguan">7 Hari Terakhir</option>
+                <option value="bulanan" selected>Bulan Ini</option>
+                <option value="tahunan">Tahun Ini</option>
+              </select>
+            </div>
+            <div id="filterTanggalField" hidden>
+              <div class="field">
+                <label for="filterTanggal">Tanggal Laporan</label>
+                <input type="date" id="filterTanggal" class="order-detail-select" required disabled />
+              </div>
+            </div>
+            <div id="filterTanggalMulaiField" hidden>
+              <div class="field">
+                <label for="filterTanggalMulai">Tanggal Mulai</label>
+                <input type="date" id="filterTanggalMulai" class="order-detail-select" required disabled />
+              </div>
+            </div>
+            <div id="filterTanggalAkhirField" hidden>
+              <div class="field">
+                <label for="filterTanggalAkhir">Tanggal Akhir</label>
+                <input type="date" id="filterTanggalAkhir" class="order-detail-select" required disabled />
+              </div>
+            </div>
+            <div class="field">
+              <label>Status Servis</label>
+              <select id="filterStatus" class="order-detail-select">
+                <option value="Semua">Semua Status</option>
+                <!-- Opsi dirender via JS -->
+              </select>
+            </div>
+            <div class="field">
+              <label>Kategori Perangkat</label>
+              <select id="filterDevice" class="order-detail-select">
+                <option value="Semua">Semua Perangkat</option>
+                <option value="Laptop">Laptop</option>
+                <option value="HP">Smartphone / HP</option>
+                <option value="Tablet">Tablet</option>
+                <option value="Lainnya">Lainnya</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Layanan</label>
+              <select id="filterService" class="order-detail-select">
+                <option value="Semua">Semua Layanan</option>
+                <!-- Opsi dirender via JS -->
+              </select>
+            </div>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:20px;">
+            <button type="button" class="btn btn-teal" id="btnFilter">Tampilkan Laporan</button>
+            <button type="button" class="btn btn-outline-dark" id="btnResetFilter">Reset Filter</button>
+          </div>
+          <p id="reportAppliedPeriod" class="report-applied-period" role="status"></p>
+        </div>
+
+        <div class="stat-cards stat-cards-4" style="margin-bottom: 24px;">
+          <div class="stat-card">
+            <div class="stat-label">Total Booking</div>
+            <div class="stat-value" id="lapTotalBooking">0</div>
+          </div>
+          <div class="stat-card stat-progress">
+            <div class="stat-label">Sedang Diproses</div>
+            <div class="stat-value" id="lapDiproses">0</div>
+          </div>
+          <div class="stat-card stat-done">
+            <div class="stat-label">Servis Selesai</div>
+            <div class="stat-value" id="lapSelesai">0</div>
+          </div>
+          <div class="stat-card stat-active">
+            <div class="stat-label">Total Pendapatan</div>
+            <div class="stat-value" id="lapPendapatan" style="font-size: 1.5rem;">Rp 0</div>
+          </div>
+        </div>
+
+        <div class="order-card" style="margin-bottom: 24px; padding: 20px;">
+          <h3 style="margin-bottom:12px; font-size:0.9rem; color:var(--text-muted);">Rekap Status Servis</h3>
+          <div id="statusSummaryWrap" style="display:flex; flex-wrap:wrap; gap:12px; font-size:0.85rem;">
+            <!-- Dirender via JS -->
+          </div>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Kode Servis</th>
+                <th>Tanggal Masuk</th>
+                <th>Customer</th>
+                <th>Perangkat</th>
+                <th>Layanan</th>
+                <th>Status</th>
+                <th>Biaya Servis</th>
+                <th>Tgl Selesai</th>
+              </tr>
+            </thead>
+            <tbody id="laporanTableBody">
+              <!-- Data dimuat dari admin.js -->
+            </tbody>
+            <tfoot style="background-color: var(--gray-light); font-weight: 600;">
+              <tr>
+                <td colspan="7" style="text-align:right;">TOTAL PENDAPATAN</td>
+                <td id="tfootTotalPendapatan">Rp 0</td>
+                <td></td>
+              </tr>
+            </tfoot>
+          </table>
+          <p class="admin-table-empty" id="laporanEmptyState" style="display:none;">Tidak ada data laporan pada periode yang dipilih.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

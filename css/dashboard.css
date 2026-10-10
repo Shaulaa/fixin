@@ -1,0 +1,717 @@
+/* =========================================
+   FIXIN - Dashboard (admin & user)
+   Pakai variable warna & radius yang sama dari style.css
+========================================= */
+
+.admin-topbar {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.admin-topbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.admin-topbar .logo {
+  color: var(--white);
+}
+
+.admin-topbar .nav-toggle span {
+  background: var(--white);
+}
+
+.admin-topbar .nav-links a {
+  color: var(--text-on-navy);
+}
+
+.admin-topbar .nav-links a.active,
+.admin-topbar .nav-links a:hover {
+  color: var(--white);
+  border-bottom-color: var(--teal);
+}
+
+@media (max-width: 680px) {
+  .admin-topbar .nav-links {
+    background: var(--navy);
+    border-bottom-color: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+  }
+
+  .admin-topbar .nav-links a {
+    border-bottom-color: rgba(255, 255, 255, 0.14);
+  }
+}
+
+.admin-content {
+  padding: 48px 0 80px;
+}
+
+.admin-page-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.admin-page-head h1 {
+  font-size: 1.7rem;
+  margin-bottom: 6px;
+}
+
+.admin-page-head p {
+  color: var(--text-muted);
+  font-size: 0.93rem;
+}
+
+/* ---------- Tabel ---------- */
+.admin-table-wrap {
+  background: var(--white);
+  border: 1px solid var(--gray-border);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 640px;
+}
+
+.admin-table th,
+.admin-table td {
+  text-align: left;
+  padding: 14px 20px;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--gray-border);
+  white-space: nowrap;
+}
+
+.admin-table th {
+  background: var(--gray-bg);
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-table-actions {
+  display: flex;
+  gap: 14px;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--teal-dark);
+  cursor: pointer;
+}
+
+.btn-link:hover {
+  text-decoration: underline;
+}
+
+.btn-link-danger {
+  color: #c0392b;
+}
+
+.admin-table-empty {
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+/* ---------- Status badge ---------- */
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.status-active {
+  background: var(--tint-teal);
+  color: var(--teal-dark);
+}
+
+.status-inactive {
+  background: #f4e9e9;
+  color: #a13a2f;
+}
+
+.status-warning {
+  background: #fdf1de;
+  color: #b7791f;
+}
+
+.status-info {
+  background: var(--tint-navy);
+  color: var(--navy);
+}
+
+/* ---------- Modal ---------- */
+.modal-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(12, 35, 64, 0.55);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 100;
+}
+
+.modal-backdrop.show {
+  display: flex;
+}
+
+.modal-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 32px;
+  max-width: 560px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 60px rgba(12, 35, 64, 0.25);
+}
+
+.modal-card-sm {
+  max-width: 420px;
+}
+
+.modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.modal-head h3 {
+  font-size: 1.25rem;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 2px 6px;
+}
+
+.modal-close:hover {
+  color: var(--text-dark);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.checkbox-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 4px 0 4px;
+}
+
+.checkbox-field input {
+  width: 16px;
+  height: 16px;
+}
+
+.form-alert {
+  display: none;
+  background: #fdecea;
+  border: 1px solid #f3c2bb;
+  color: #c0392b;
+  font-size: 0.86rem;
+  padding: 11px 14px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 16px;
+}
+
+.btn-danger {
+  background: #c0392b;
+  color: var(--white);
+}
+
+.btn-danger:hover {
+  background: #a5301f;
+}
+
+/* ---------- Toast ---------- */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translate(-50%, 20px);
+  background: var(--navy);
+  color: var(--white);
+  padding: 13px 22px;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  box-shadow: 0 12px 28px rgba(12, 35, 64, 0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 200;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (max-width: 680px) {
+  .admin-content {
+    padding: 32px 0 60px;
+  }
+
+  .modal-card {
+    padding: 24px 20px;
+  }
+
+  /* Navbar admin: sembunyikan nama admin di tombol "Keluar (Nama)" dan
+     perkecil tombolnya, supaya navbar tidak meluber di HP kecil. */
+  .admin-welcome-wrap {
+    display: none;
+  }
+
+  .admin-topbar .btn-outline {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+  }
+
+  .admin-topbar .logo {
+    font-size: 1.1rem;
+  }
+}
+
+/* =========================================
+   User Dashboard
+========================================= */
+.user-dashboard-content {
+  padding: 48px 0 80px;
+}
+
+.user-profile-card {
+  background: var(--white);
+  border: 1px solid var(--gray-border);
+  border-radius: var(--radius-md);
+  padding: 26px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.user-profile-info .role-badge {
+  display: inline-block;
+  background: var(--tint-teal);
+  color: var(--teal-dark);
+  font-weight: 600;
+  font-size: 0.78rem;
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+
+.user-profile-info h1 {
+  font-size: 1.35rem;
+  margin-bottom: 4px;
+}
+
+.user-profile-info p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.stat-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.stat-card {
+  background: var(--white);
+  border: 1px solid var(--gray-border);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+}
+
+.stat-card .stat-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 8px;
+}
+
+.stat-card .stat-value {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.stat-card.stat-active .stat-value {
+  color: #b7791f;
+}
+
+.stat-card.stat-done .stat-value {
+  color: var(--teal-dark);
+}
+
+/* ---------- Stat cards: varian 4 kolom (dashboard admin) ---------- */
+.stat-cards.stat-cards-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 900px) {
+  .stat-cards.stat-cards-4 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .stat-cards.stat-cards-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Filter & search bar (admin-orders.html) ---------- */
+.admin-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.admin-filters input[type="search"],
+.admin-filters select {
+  border: 1px solid var(--gray-border);
+  border-radius: var(--radius-sm);
+  padding: 11px 14px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  background: var(--white);
+}
+
+.admin-filters input[type="search"] {
+  flex: 1 1 240px;
+  min-width: 220px;
+}
+
+.admin-filters select {
+  min-width: 190px;
+}
+
+.admin-filters input[type="search"]:focus,
+.admin-filters select:focus {
+  outline: none;
+  border-color: var(--teal);
+}
+
+.order-detail-select {
+  width: 100%;
+  border: 1px solid var(--gray-border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.92rem;
+  color: var(--text-dark);
+  background: var(--white);
+}
+
+.order-detail-select:focus {
+  outline: none;
+  border-color: var(--teal);
+}
+
+.order-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.order-card {
+  background: var(--white);
+  border: 1px solid var(--gray-border);
+  border-radius: var(--radius-md);
+  padding: 22px 24px;
+}
+
+.order-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.order-card-code {
+  font-weight: 700;
+  color: var(--teal-dark);
+  font-size: 0.95rem;
+}
+
+.order-card-meta {
+  font-size: 0.87rem;
+  color: var(--text-muted);
+  margin-top: 3px;
+}
+
+.order-card-right {
+  text-align: right;
+}
+
+.order-card-total {
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+  margin-top: 6px;
+}
+
+.order-card-payment {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.87rem;
+  color: var(--text-muted);
+}
+
+.order-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.order-card-actions .btn {
+  padding: 9px 16px;
+  font-size: 0.85rem;
+}
+
+.order-empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-muted);
+  background: var(--white);
+  border: 1px dashed var(--gray-border);
+  border-radius: var(--radius-md);
+}
+
+.order-empty-state p {
+  margin-bottom: 18px;
+}
+
+.section-title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.section-title-row h2 {
+  font-size: 1.15rem;
+}
+
+@media (max-width: 900px) {
+  .stat-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .stat-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .user-profile-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .order-card-top {
+    flex-direction: column;
+  }
+
+  .order-card-right {
+    text-align: left;
+  }
+}
+
+/* ---------- Stat card color variants ---------- */
+.stat-card.stat-progress .stat-value {
+  color: #2b6cb0;
+}
+
+.stat-card.stat-warning .stat-value {
+  color: #b7791f;
+}
+
+/* ---------- Detail page grid ---------- */
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.detail-grid .order-card h3 {
+  font-size: 1rem;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--gray-border);
+}
+
+.detail-grid .order-card:last-child {
+  grid-column: 1 / -1;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--teal-dark);
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+
+.back-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+}
+
+.back-btn:hover {
+  text-decoration: underline;
+}
+
+.back-btn-dark {
+  color: var(--text-dark);
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--gray-border);
+  font-size: 0.9rem;
+}
+
+.summary-row:last-child {
+  border-bottom: none;
+}
+
+.summary-row span:first-child {
+  color: var(--text-muted);
+}
+
+.summary-row span:last-child {
+  text-align: right;
+  font-weight: 500;
+}
+
+/* ---------- Responsive table → card mobile ---------- */
+@media (max-width: 680px) {
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-table-wrap table thead {
+    display: none;
+  }
+
+  .admin-table-wrap table,
+  .admin-table-wrap table tbody,
+  .admin-table-wrap table tr,
+  .admin-table-wrap table td {
+    display: block;
+    width: 100%;
+  }
+
+  .admin-table-wrap table tr {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--gray-border);
+  }
+
+  .admin-table-wrap table td {
+    padding: 5px 0;
+    border-bottom: none;
+    font-size: 0.88rem;
+    white-space: normal;
+  }
+
+  .admin-table-wrap table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .admin-table-actions {
+    display: block;
+    margin-top: 8px;
+  }
+}
+
+/* Cetak struk: sembunyikan seluruh halaman kecuali area struk.
+   Ini solusi sementara tahap ini; CSS print khusus (thermal-friendly)
+   dikerjakan di tahap berikutnya bersamaan dengan invoice PDF (Prompt 7). */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #strukPrintArea,
+  #strukPrintArea * {
+    visibility: visible;
+  }
+
+  #strukPrintArea {
+    display: block !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 24px;
+  }
+}
